@@ -22,7 +22,7 @@ const steps = [{
   title: "EN DESARROLLO",
   content: <span><strong className="font-medium">200</strong> empleos directos e indirectos a generar durante su desarrollo.</span>
 }, {
-  title: "en operaeción",
+  title: "en OPERACIÓN",
   content: <span><strong className="font-medium">100</strong> empleos directos y 250,000 hogares a beneficiarse en fase de operacion.</span>
 }]
 
@@ -41,6 +41,19 @@ export default function Home() {
   }
   const toggleContact = () => setShowContact(v => !v)
 
+  const ABOUT_ITEMS = [{
+    name: "Compañia",
+    action: () => window.scrollBy({ top: 320 })
+  }, {
+    name: "Proyecto",
+    action: toggleSecondVideo
+  }, {
+    name: "Crisis actual",
+    action: toggleFirstVideo
+  }, {
+    name: "Contacto",
+    action: toggleContact
+  }]
 
   return (
     <>
@@ -174,11 +187,12 @@ export default function Home() {
             <article className="px-4 md:py-0 pt-8">
               <h2 className="font-bold text-2xl md:text-3xl">Sobre Nosotros<span className="text-[#96FC04]">.</span></h2>
               <div className="flex flex-wrap w-full gap-3 mt-6">
-                {["Compañia", "Proyecto", "Crisis actual", "Contacto"].map((name) => {
+                {ABOUT_ITEMS.map(({ name, action }, i) => {
                   return (
                     <Button
-                      key={name}
+                      key={i}
                       variant="bordered"
+                      onPress={action}
                       className=""
                     >
                       {name}

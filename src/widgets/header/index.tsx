@@ -1,9 +1,9 @@
 "use client"
 
 import { Logo } from "@/shared/ui";
-import { Button, Link } from "@heroui/react";
+import { Button, Link, NavbarMenu, NavbarMenuItem, NavbarMenuToggle } from "@heroui/react";
 import { Navbar, NavbarBrand, NavbarContent, NavbarItem } from "@heroui/react";
-import { FC } from "react";
+import { FC, useState } from "react";
 ;
 
 
@@ -13,11 +13,21 @@ type Props = {
 }
 
 export const Header: FC<Props> = (props) => {
+  const [isMenuOpen, setIsMenuOpen] = useState(false)
+  const toggleMenu = () => {
+    setIsMenuOpen(v => !v)
+    console.log("close")
+  }
+
   return (
-    <Navbar classNames={{
-      wrapper: "px-0 max-w-none !container",
-      base: "bg-[#212121] pt-2"
-    }}>
+    <Navbar
+      onMenuOpenChange={setIsMenuOpen}
+      isMenuOpen={isMenuOpen}
+      classNames={{
+        wrapper: "px-4 max-w-none !container",
+        base: "bg-[#212121] pt-2"
+      }}
+    >
       <NavbarBrand>
         <Logo />
       </NavbarBrand>
@@ -38,7 +48,7 @@ export const Header: FC<Props> = (props) => {
           </Link>
         </NavbarItem>
       </NavbarContent>
-      <NavbarContent justify="end">
+      <NavbarContent className="hidden sm:flex" justify="end">
         <NavbarItem>
           <Button
             as={Link}
@@ -53,6 +63,49 @@ export const Header: FC<Props> = (props) => {
           </Button>
         </NavbarItem>
       </NavbarContent>
+      <NavbarContent className="sm:hidden" justify="end">
+        <NavbarMenuToggle
+          aria-label={isMenuOpen ? "Close menu" : "Open menu"}
+          className="sm:hidden text-white "
+
+        />
+      </NavbarContent>
+      <NavbarMenu className="bg-[#212121] pt-8">
+        <NavbarMenuItem>
+          <Link
+            className="w-full text-white justify-center"
+            href="#about-us"
+            size="lg"
+            onPress={toggleMenu}
+          >
+            Nosotros
+          </Link>
+        </NavbarMenuItem>
+        <NavbarMenuItem>
+          <Link
+            className="w-full text-white justify-center"
+            onPress={() => {
+              toggleMenu()
+              props.onProjectClick()
+            }}
+            size="lg"
+          >
+            Proyecto
+          </Link>
+        </NavbarMenuItem>
+        <NavbarMenuItem>
+          <Link
+            className="w-full text-white justify-center"
+            onPress={() => {
+              toggleMenu()
+              props.onProjectClick()
+            }}
+            size="lg"
+          >
+            Contacto
+          </Link>
+        </NavbarMenuItem>
+      </NavbarMenu>
     </Navbar>
   );
 }
