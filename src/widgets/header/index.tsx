@@ -98,7 +98,7 @@ export const Header: FC<Props> = (props) => {
             className="w-full text-white justify-center"
             onPress={() => {
               toggleMenu()
-              props.onProjectClick()
+              props.onContactClick()
             }}
             size="lg"
           >
