@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import { HeroProvider } from "@/providers/hero-ui";
+import { Loader } from "@/shared/ui";
 /* import { HeroProvider } from "@/providers/hero-ui"; */
 
 export const metadata: Metadata = {
@@ -19,6 +20,12 @@ export default function RootLayout({
         className={`antialiased font-satoshi`}
       >
         <HeroProvider>
+          <Loader
+            theme="dark"
+            classNames={{
+              container: "-z-10"
+            }}
+          />
           {children}
         </HeroProvider>
       </body>

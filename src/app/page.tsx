@@ -4,7 +4,7 @@ import { Button } from "@heroui/button";
 import { TbArrowUpRight, TbCopy, TbCheck, TbMapPinFilled } from "react-icons/tb";
 
 import Image from "next/image";
-import { LogoIcon } from "@/shared/ui";
+import { Loader, LogoIcon } from "@/shared/ui";
 import { Input, Link, Modal, ModalBody, ModalContent, ModalHeader } from "@heroui/react";
 import { useState } from "react";
 import ReactPlayer from "react-player";
@@ -241,7 +241,7 @@ export default function Home() {
           <div className="mt-16">
             {steps.map(({ title, content }, i) => (
               <article key={i} className="relative flex flex-col md:flex-row px-4 py-8 mt-2 justify-between items-start border-t rounded-3xl border-[#212121]">
-                <LogoIcon className="w-4 md:6 absolute right-4" />
+                <LogoIcon className="w-4 md:6 absolute right-4 fill-[#212121]" />
                 <div className="flex items-center gap-2">
                   <small>0{i + 1}</small>
                   <h3 className="text-2xl font-bold uppercase">{title}</h3>
@@ -390,7 +390,7 @@ export default function Home() {
               </li>
             </ul>
           </div>
-          <p className="mt-12 md:mt-16 lg:mt-20 border-t pt-7 px-8 text-center border-white rounded-2xl text-white/60">Copyright © 2025 Electro solar S. A. - TODOS LOS DERECHOS RESERVADOS</p>
+          <p className="mt-12 md:mt-16 lg:mt-20 border-t pt-7 px-8 text-center border-white rounded-2xl text-white/60">Copyright © 2025 Electro Solar S. A. - TODOS LOS DERECHOS RESERVADOS</p>
         </div>
       </footer>
       <Modal
@@ -400,6 +400,12 @@ export default function Home() {
       >
         <ModalContent>
           <ModalBody className="p-0 !h-[420px]">
+            <Loader
+              theme="dark"
+              classNames={{
+                container: "-z-10"
+              }}
+            />
             <ReactPlayer
               url="https://vimeo.com/1063466130/3ab6b5e30c?share=copy"
               width="100%"
@@ -417,12 +423,17 @@ export default function Home() {
       >
         <ModalContent>
           <ModalBody className="p-0 !h-[420px]">
+            <Loader
+              theme="dark"
+              classNames={{
+                container: "-z-10"
+              }}
+            />
             <ReactPlayer
               url="https://vimeo.com/1063467705/24e0d6cb8c?share=copy"
               width="100%"
               height={374}
               loop
-              light
               playing
             />
           </ModalBody>
