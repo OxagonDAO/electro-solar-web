@@ -8,8 +8,9 @@ import { FC, useState } from "react";
 
 
 type Props = {
-  onProjectClick: () => void
-  onContactClick: () => void
+  onProjectClick: () => void,
+  onCrisisClick: () => void,
+  onContactClick: () => void,
 }
 
 export const Header: FC<Props> = (props) => {
@@ -40,6 +41,11 @@ export const Header: FC<Props> = (props) => {
         <NavbarItem className="text-[#89939E] data-[active=true]:text-white">
           <Link onPress={props.onProjectClick} className="text-current">
             Proyecto
+          </Link>
+        </NavbarItem>
+        <NavbarItem className="text-[#89939E] data-[active=true]:text-white">
+          <Link onPress={props.onCrisisClick} className="text-current">
+            Crisis actual
           </Link>
         </NavbarItem>
         <NavbarItem className="text-[#89939E] data-[active=true]:text-white">

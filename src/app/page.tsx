@@ -59,6 +59,7 @@ export default function Home() {
     <>
       <Header
         onProjectClick={toggleSecondVideo}
+        onCrisisClick={toggleFirstVideo}
         onContactClick={toggleContact}
       />
       <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start">
@@ -374,17 +375,17 @@ export default function Home() {
             </div>
             <ul className="flex flex-col md:flex-row gap-8 mt-12 md:mt-0">
               <li>
-                <Link aria-current="page" href="#" className="text-white/90">
+                <Link aria-current="page" href="#about-us" className="text-white/90">
                   NOSOTROS
                 </Link>
               </li>
               <li>
-                <Link aria-current="page" href="#" className="text-white/90">
+                <Link aria-current="page" onPress={toggleSecondVideo} className="text-white/90">
                   PROYECTO
                 </Link>
               </li>
               <li>
-                <Link aria-current="page" href="#" className="text-white/90">
+                <Link aria-current="page" onPress={toggleContact} className="text-white/90">
                   CONTACTO
                 </Link>
               </li>
