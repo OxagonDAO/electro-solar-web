@@ -36,7 +36,7 @@ export default function Home() {
   const toggleSecondVideo = () => setShowSecondVideo(v => !v)
   const handleCopy = () => {
     setIsCopied(true)
-    navigator.clipboard.writeText("51951615540")
+    navigator.clipboard.writeText("51933441737")
     setTimeout(() => setIsCopied(false), 1000)
   }
   const toggleContact = () => setShowContact(v => !v)
@@ -451,7 +451,7 @@ export default function Home() {
             <label className="flex items-center justify-between">
               <span>Teléfono:</span>
               <div className="flex items-center gap-2">
-                <span>(+51) 951 615 540</span>
+                <span>(+51) 933 441 737</span>
                 <Button
                   isIconOnly
                   size="sm"
