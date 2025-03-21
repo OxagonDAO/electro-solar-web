@@ -37,10 +37,10 @@ export default function Home() {
   const toggleFirstVideo = () => {
     setShowFirstVideo(v => !v)
 
-    setTimeout(() => {
-      const player = firstPlayerRef.current?.getInternalPlayer()
-      if (player) player.element.requestFullscreen();
-    }, 500)
+    /*  setTimeout(() => {
+       const player = firstPlayerRef.current?.getInternalPlayer()
+       if (player) player.element.requestFullscreen();
+     }, 500) */
   }
   const toggleSecondVideo = () => {
     setShowSecondVideo(v => !v)
@@ -412,11 +412,12 @@ export default function Home() {
       </footer>
       <Modal
         isOpen={showFirstVideo}
-        size="2xl"
+        size="5xl"
+        backdrop="blur"
         onClose={toggleFirstVideo}
       >
-        <ModalContent>
-          <ModalBody className="p-0 !h-[20px]">
+        <ModalContent className="">
+          <ModalBody className="p-0 ">
             <Loader
               theme="dark"
               classNames={{
@@ -425,9 +426,16 @@ export default function Home() {
             />
             <ReactPlayer
               ref={firstPlayerRef}
+              config={{
+                vimeo: {
+                  playerOptions: {
+                    responsive: true
+                  }
+                }
+              }}
               url="https://vimeo.com/1068184417?share=copy"
               width="100%"
-              height={374}
+              height="100%"
               loop
               playing
             />
@@ -437,6 +445,7 @@ export default function Home() {
       <Modal
         isOpen={showSecondVideo}
         size="2xl"
+        backdrop="blur"
         onClose={toggleSecondVideo}
       >
         <ModalContent>
