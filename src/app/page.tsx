@@ -45,10 +45,10 @@ export default function Home() {
   const toggleSecondVideo = () => {
     setShowSecondVideo(v => !v)
 
-    setTimeout(() => {
+    /* setTimeout(() => {
       const player = secondPlayerRef.current?.getInternalPlayer()
       if (player) player.element.requestFullscreen();
-    }, 500)
+    }, 500) */
   }
   const handleCopy = () => {
     setIsCopied(true)
@@ -414,6 +414,7 @@ export default function Home() {
         isOpen={showFirstVideo}
         size="5xl"
         backdrop="blur"
+        placement="center"
         onClose={toggleFirstVideo}
       >
         <ModalContent className="">
@@ -444,12 +445,13 @@ export default function Home() {
       </Modal>
       <Modal
         isOpen={showSecondVideo}
-        size="2xl"
+        size="5xl"
         backdrop="blur"
+        placement="center"
         onClose={toggleSecondVideo}
       >
         <ModalContent>
-          <ModalBody className="p-0 !h-[420px]">
+          <ModalBody className="p-0">
             <Loader
               theme="dark"
               classNames={{
@@ -460,11 +462,11 @@ export default function Home() {
               ref={secondPlayerRef}
               url="https://vimeo.com/1068184652?share=copy"
               width="100%"
-              height={374}
+              height="100%"
               config={{
                 vimeo: {
                   playerOptions: {
-
+                    responsive: true
                   }
                 }
               }}
