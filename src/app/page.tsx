@@ -6,7 +6,7 @@ import { TbArrowUpRight, TbCopy, TbCheck, TbMapPinFilled } from "react-icons/tb"
 import Image from "next/image";
 import { Loader, LogoIcon } from "@/shared/ui";
 import { Input, Link, Modal, ModalBody, ModalContent, ModalHeader } from "@heroui/react";
-import { useState } from "react";
+import { useRef, useState } from "react";
 import ReactPlayer from "react-player";
 
 const steps = [{
@@ -29,11 +29,27 @@ const steps = [{
 export default function Home() {
   const [showFirstVideo, setShowFirstVideo] = useState(false)
   const [showSecondVideo, setShowSecondVideo] = useState(false)
+  const firstPlayerRef = useRef<ReactPlayer>(null);
+  const secondPlayerRef = useRef<ReactPlayer>(null);
   const [showContact, setShowContact] = useState(false)
   const [isCopied, setIsCopied] = useState(false)
 
-  const toggleFirstVideo = () => setShowFirstVideo(v => !v)
-  const toggleSecondVideo = () => setShowSecondVideo(v => !v)
+  const toggleFirstVideo = () => {
+    setShowFirstVideo(v => !v)
+
+    setTimeout(() => {
+      const player = firstPlayerRef.current?.getInternalPlayer()
+      if (player) player.element.requestFullscreen();
+    }, 500)
+  }
+  const toggleSecondVideo = () => {
+    setShowSecondVideo(v => !v)
+
+    setTimeout(() => {
+      const player = secondPlayerRef.current?.getInternalPlayer()
+      if (player) player.element.requestFullscreen();
+    }, 500)
+  }
   const handleCopy = () => {
     setIsCopied(true)
     navigator.clipboard.writeText("51933441737")
@@ -400,7 +416,7 @@ export default function Home() {
         onClose={toggleFirstVideo}
       >
         <ModalContent>
-          <ModalBody className="p-0 !h-[420px]">
+          <ModalBody className="p-0 !h-[20px]">
             <Loader
               theme="dark"
               classNames={{
@@ -408,7 +424,8 @@ export default function Home() {
               }}
             />
             <ReactPlayer
-              url="https://vimeo.com/1063466130/3ab6b5e30c?share=copy"
+              ref={firstPlayerRef}
+              url="https://vimeo.com/1068184417?share=copy"
               width="100%"
               height={374}
               loop
@@ -431,9 +448,17 @@ export default function Home() {
               }}
             />
             <ReactPlayer
-              url="https://vimeo.com/1063467705/24e0d6cb8c?share=copy"
+              ref={secondPlayerRef}
+              url="https://vimeo.com/1068184652?share=copy"
               width="100%"
               height={374}
+              config={{
+                vimeo: {
+                  playerOptions: {
+
+                  }
+                }
+              }}
               loop
               playing
             />
